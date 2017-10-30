@@ -1,18 +1,19 @@
-# https://github.com/mholla/freesurfer_scripts
+'''
+https://github.com/mholla/freesurfer_scripts
 
-# This file contains several functions that facilitate the creation of a user-defined colortable
+This file contains several functions that facilitate the creation of a user-defined colortable
 
-# Colors can be defined for a given region or set of regions in make_colortable 
-# (current code assigns colors randomly on a blue-white-red colormap)
+Colors can be defined for a given region or set of regions in make_colortable 
+(current code assigns colors randomly on a blue-white-red colormap)
 
-# list_regions creates the required ordered list of regions in the Destrieux atlas; 
-# if another atlas is desired (i.e., Desikan-Killiany), this list should be recreated accordingly
+list_regions creates the required ordered list of regions in the Destrieux atlas; 
+if another atlas is desired (i.e., Desikan-Killiany), this list should be recreated accordingly
 
-# define_color is a helper function that tranforms a number into a color given a colormap and a range
+define_color is a helper function that tranforms a number into a color given a colormap and a range
 
-# write_ctab_entry writes a single line of the ctab file, defining region i to be a given color
-# the function name_to_rgb requires the package webcolors (https://pypi.python.org/pypi/webcolors/)
-
+write_ctab_entry writes a single line of the ctab file, defining region i to be a given color
+the function name_to_rgb requires the package webcolors (https://pypi.python.org/pypi/webcolors/)
+'''
 
 
 import string
@@ -22,12 +23,14 @@ import matplotlib.pyplot as plt
 import random
 from webcolors import *
 
-def make_colortable():
-# color by lobe (or similar large region)
+def make_colortable(filename):
+    ''' 
+    make_colortable(filename): writes a complete ctab to the file specified
+    '''
 
     regions = list_regions()
 
-    f = open('my_colortable.ctab','w')
+    f = open(filename,'w')
 
     for i in range(len(regions)):
         color = define_color(random.randint(0,99),0,100)
@@ -37,10 +40,12 @@ def make_colortable():
 
 
 def list_regions():
-# lists regions of the Destrieux atlas along with the required ordering in the ctab file
+    ''' 
+    list_regions(): lists regions of the Destrieux atlas along with the required ordering in the ctab file
 
-    # 2nd column is ordering for ctab file
-    # 3rd column matches numbering in Destriuex 2010 paper
+    2nd column is ordering for ctab file
+    3rd column matches numbering in Destriuex 2010 paper
+    '''
 
     regions = [
         ['Unknown',                       0,  0],
@@ -125,7 +130,9 @@ def list_regions():
 
 
 def define_color(x,a,b):
-# turn a number between a and b into a colormap representation
+    ''' 
+    define_color(x,a,b): turns a number x between a and b into a colormap representation 
+    '''
 
     colormap = plt.get_cmap('bwr')
     norm = matplotlib.colors.Normalize(vmin=a, vmax=b)
@@ -135,7 +142,9 @@ def define_color(x,a,b):
 
 
 def write_ctab_entry(f,regions,i,color):
-# writes entry in colortable file defining region i to be a given color
+    ''' 
+    write_ctab_entry(f,regions,i,color): writes entry in colortable file f, defining region i to be a given color 
+    '''
 
     n = str(regions[i][1]).ljust(2)
     name = str(regions[i][0]).ljust(32)
@@ -154,7 +163,7 @@ def write_ctab_entry(f,regions,i,color):
 
 
 if __name__ == '__main__':
-    make_colortable()
+    make_colortable('my_colortable.ctab')
 
 
 
