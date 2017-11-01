@@ -1,17 +1,21 @@
 # https://github.com/mholla/freesurfer_scripts
 
-# This script creates images of a reconstructed brain surface 
-# using a specified colortable.  Subject name, hemipshere, and 
-# surface are set in the command. Surfaces are specified as: 
-# - inf = inflated
-# - wh = white matter
-# - pl = pial
+# This script creates images of a reconstructed brain surface using a specified colortable.  
+
+# Subject name and hemipshere are defined in the command (or, for batch mode, in capture_images.sh).  
+# Color tables should be set in the code below.
+# Multiple surfaces can be specified in the code below by the numbers.
+# 0  Main
+# 1  Inflated
+# 2  White
+# 3  Pial
+# 4  Original
+# Main and Original appear to both refer to the surface specified in the command.
 
 # to run for an individual subject:
 # "tksurfer subject hemi surface -tcl capture_image.tcl"
 
-# to run for a batch of subjects:
-# use capture_images.sh
+# to run for a batch of subjects: use capture_images.sh
 
 # some code courtesy of:
 # https://surfer.nmr.mgh.harvard.edu/fswiki/QaImageScripts
@@ -19,7 +23,8 @@
 # ---------------------------------------------------------
 
 # before running, make sure folders are declared correctly.
-# $home refers to the current working directory
+# $home refers to freesurfer's subject folder and does not appear to be changeable
+# to change folder, type "setenv SUBJECT_DIR "path/to/subject/directory/" " in the terminal
 set subjectsdir $home
 set  subjectdir "$home/$subject"
 set    imagedir "$home/images"
@@ -40,14 +45,16 @@ if {$hemi == "rh"} {
   set rotmult -1
 }
 
-# Iterate surfaces
-foreach surfix {1 3} {
+# if specifying surfaces in this file, update switch and foreach commands 
+foreach surfix {0} {
   set surfname "ERROR"
 
   switch -exact -- $surfix {
+    0 { set surfname main; set zoom 1.00}
     1 { set surfname inf ; set zoom 0.75}
     2 { set surfname wh  ; set zoom 1.25}
     3 { set surfname pl  ; set zoom 1.25}
+    4 { set surfname orig; set zoom 1.00}
   }
 
   scale_brain $zoom
