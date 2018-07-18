@@ -12,3 +12,5 @@
 - **capture_images.sh**  This is a bash script that creates images of the brain in batches, using capture_image.tcl
 
 If you find any errors or omissions or have suggestions for ways I could improve this resource, please contact me by [email](maria-holl@nd.edu).
+
+[![DOI](https://zenodo.org/badge/108457839.svg)](https://zenodo.org/badge/latestdoi/108457839)

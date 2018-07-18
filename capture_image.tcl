@@ -1,4 +1,4 @@
-# https://github.com/mholla/freesurfer_scripts
+# https://github.com/mholla/freesurfer_scripts, DOI: 10.5281/zenodo.1314984
 
 # This script creates images of a reconstructed brain surface using a specified colortable.  
 

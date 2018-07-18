@@ -1,5 +1,5 @@
 '''
-https://github.com/mholla/freesurfer_scripts
+https://github.com/mholla/freesurfer_scripts, DOI: 10.5281/zenodo.1314984
 
 This file contains several functions that facilitate the creation of a user-defined colortable
 

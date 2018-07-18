@@ -1,5 +1,5 @@
 '''
-https://github.com/mholla/freesurfer_scripts
+https://github.com/mholla/freesurfer_scripts, DOI: 10.5281/zenodo.1314984
 
 This script works on a folder containing post-processing files from Freesurfer.
 It replaces the subject ID in the folder of freesurfer data with a randomly-
