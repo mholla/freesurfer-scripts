@@ -17,7 +17,7 @@ To use:
 3. place resulting files (mri_deface, talairach_mixed_with_skull.gca, and face.gca)
    in the same subject folder
 4. populate list of subjects if not the entire folder
-4. run (python anonymize_freesurfer.py)
+5. run (python anonymize_freesurfer.py)
 
 Besides subject name, identifying dates or other information may remain which may be 
 considered Personal Health Information (PHI).  This script is not guaranteed to remove 
